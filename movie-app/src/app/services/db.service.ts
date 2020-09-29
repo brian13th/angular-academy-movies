@@ -8,7 +8,9 @@ export class DbService {
 
   constructor() { }
 
-  getAllMovies(): any[] {
-    return movies
-  }
+  getAllMovies(criteria?: any): any[] {
+    if (criteria){
+      return movies.filter(data=>data.featured == criteria.featured)}
+      else return movies
+    }
 }
