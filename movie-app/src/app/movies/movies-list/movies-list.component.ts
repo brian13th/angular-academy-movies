@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
@@ -8,12 +8,9 @@ import { DbService } from 'src/app/services/db.service';
 })
 export class MoviesListComponent implements OnInit {
 
-  @Input('criteria')
-  criteria: any = {featured: true}
-
   movies: any[];
   constructor(private db:DbService) {
-    this.movies = db.getAllMovies(this.criteria)
+    this.movies = db.getAllMovies()
    }
 
   ngOnInit(): void {

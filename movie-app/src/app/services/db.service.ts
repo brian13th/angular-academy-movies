@@ -7,7 +7,7 @@ import { movies } from '../movies/movie-data'
 export class DbService {
 
   constructor() { }
-
+  // criteria orizw to property gia to filtrarisma pou thelw na kanw.
   getAllMovies(criteria?: any): any[] {
     if (criteria){
       return movies.filter(data=>data.featured == criteria.featured)}
