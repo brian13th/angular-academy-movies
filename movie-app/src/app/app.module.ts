@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
+import { MovieGuardGuard } from './movies/movie-guard.guard';
 
 @NgModule({
   declarations: [
@@ -12,9 +13,9 @@ import { MoviesModule } from './movies/movies.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MoviesModule
+    MoviesModule,
   ],
-  providers: [],
+  providers: [MovieGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
