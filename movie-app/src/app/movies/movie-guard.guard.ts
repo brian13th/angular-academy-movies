@@ -6,8 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieGuardGuard implements CanActivate {
+  constructor(){
+
+  }
   canActivate(){
-    return false;
+    // window.sessionStorage.setItem("authorizedUser","true")
+    if (window.sessionStorage.getItem("authorisedUser") === "true"){
+      return true;
+    }
+    return false
+
   }
 
 }
