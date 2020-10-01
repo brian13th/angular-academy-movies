@@ -9,5 +9,6 @@ export class AppComponent {
   title = 'movie-app';
   activateGuard(){
     window.sessionStorage.setItem("authorizedUser","true")
+    window.alert('Access granted!')
   }
 }

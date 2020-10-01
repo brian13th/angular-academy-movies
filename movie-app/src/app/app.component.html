@@ -4,7 +4,7 @@
     <li routerLink="/movies">All movies</li>
     <li routerLink="/featured">Featured Movies</li>
     <li [routerLink]="['/murl']" [queryParams]="{'search':'Inception', 'year':'16-07-2010'}">Query the brower URL</li>
-    <button id='activate' type='button' (click)=activateGuard()></button>
+    <button id='activate' type='button' (click)=activateGuard() style="background-color:cyan;"></button>
   </ul>
 </nav>
 <router-outlet></router-outlet>

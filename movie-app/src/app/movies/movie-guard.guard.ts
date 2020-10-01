@@ -14,8 +14,8 @@ export class MovieGuardGuard implements CanActivate {
     if (window.sessionStorage.getItem("authorizedUser") === "true"){
       return true;
     }
-    window.alert('hi')
     document.getElementById('activate').innerHTML = "ActivateUser"
+    window.alert('Please press the button to activate your access url parameters')
     return false
 
   }
