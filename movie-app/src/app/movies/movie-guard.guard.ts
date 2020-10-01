@@ -11,9 +11,11 @@ export class MovieGuardGuard implements CanActivate {
   }
   canActivate(){
     // window.sessionStorage.setItem("authorizedUser","true")
-    if (window.sessionStorage.getItem("authorisedUser") === "true"){
+    if (window.sessionStorage.getItem("authorizedUser") === "true"){
       return true;
     }
+    window.alert('hi')
+    document.getElementById('activate').innerHTML = "ActivateUser"
     return false
 
   }
