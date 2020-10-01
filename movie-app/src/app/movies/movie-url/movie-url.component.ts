@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-url',
@@ -7,13 +7,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./movie-url.component.css']
 })
 export class MovieUrlComponent implements OnInit {
-  params: any;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  paramsKeys: any;
+  paramsVals: any = [];
+  url: any;
+  urll: any;
+  constructor(private activatedRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
+    this.paramsKeys = this.activatedRoute.snapshot.queryParamMap.keys
 
-    this.params = this.activatedRoute.snapshot.queryParamMap["params"]
-    console.log(this.params)
+    this.url = this.router.url
+    console.log("ayto einai apo router"+ this.url)
   }
 
 }

@@ -1,1 +1,3 @@
-<p>movie-url works!</p>
+<h3>URL parameters</h3>
+<li *ngFor="let param of paramsKeys">{{ param + ":" + activatedRoute.snapshot.queryParamMap.get(param)}} </li>
+<p> <strong> Complete URL:</strong>{{ url }}</p>
