@@ -17,7 +17,6 @@ export class MovieUrlComponent implements OnInit {
     this.paramsKeys = this.activatedRoute.snapshot.queryParamMap.keys
 
     this.url = this.router.url
-    console.log("ayto einai apo router"+ this.url)
   }
 
 }
