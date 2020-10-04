@@ -1,10 +1,13 @@
 <h1>Angular Movies App</h1>
 <nav>
   <ul>
-    <li routerLink="/movies">All movies</li>
-    <li routerLink="/featured">Featured Movies</li>
-    <li [routerLink]="['/murl']" [queryParams]="{'search':'Inception', 'year':'16-07-2010'}">Query the brower URL</li>
-    <button id='activate' type='button' (click)=activateGuard() style="background-color:cyan;"></button>
+    <li><button class="btn btn-primary" routerLink="/movies">All movies</button></li>
+    <li><button class="btn btn-primary" routerLink="/featured">Featured Movies</button></li>
+    <li>
+      <button class="btn btn-primary" [routerLink]="['/murl']" [queryParams]="{'search':'Inception', 'year':'16-07-2010'}">Query the brower URL</button>
+      <button id='activate' type='button' class="btn btn-danger" (click)=activateGuard()></button>
+    </li>
+    <li><button class="btn btn-primary" routerLink="/reactive">Reactive Form</button></li>
   </ul>
 </nav>
 <router-outlet></router-outlet>
