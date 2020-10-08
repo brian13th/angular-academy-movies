@@ -1,10 +1,23 @@
-<h1>Angular Movies App</h1>
-<nav>
-  <ul>
-    <li routerLink="/movies">All movies</li>
-    <li routerLink="/featured">Featured Movies</li>
-    <li [routerLink]="['/murl']" [queryParams]="{'search':'Inception', 'year':'16-07-2010'}">Query the brower URL</li>
-    <button id='activate' type='button' (click)=activateGuard() style="background-color:cyan;"></button>
-  </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <img src="../assets/angular-icon.svg" alt="" class="header-logo">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/movies">All Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/featured">Featured Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/murl']" [queryParams]="{'search':'Inception', 'year':'16-07-2010'}">Query a URL</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-secondary" id='activate' type='button' (click)=activateGuard() style="background-color:cyan;"></a>
+      </li>
+    </ul>
+  </div>
 </nav>
 <router-outlet></router-outlet>
