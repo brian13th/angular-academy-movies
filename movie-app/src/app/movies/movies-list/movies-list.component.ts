@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DbService } from 'src/app/services/db.service';
 
 @Component({
@@ -7,13 +7,14 @@ import { DbService } from 'src/app/services/db.service';
   styleUrls: ['./movies-list.component.css']
 })
 export class MoviesListComponent implements OnInit {
+  @Input('criteria')
+  criteria: any;
 
   movies: any[];
-  constructor(private db:DbService) {
-    this.movies = db.getAllMovies()
-   }
+  constructor(private db:DbService) {}
 
   ngOnInit(): void {
+    this.movies = this.db.getAllMovies(this.criteria)
   }
 
 }

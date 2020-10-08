@@ -10,7 +10,8 @@ export class DbService {
   // criteria orizw to property gia to filtrarisma pou thelw na kanw.
   getAllMovies(criteria?: any): any[] {
     if (criteria){
-      return movies.filter(data=>data.featured == criteria.featured)}
-      else return movies
+      return movies.filter(data=>data.featured == criteria.featured);
     }
+    else return movies;
+  }
 }
