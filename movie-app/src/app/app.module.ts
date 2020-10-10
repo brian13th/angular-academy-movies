@@ -7,11 +7,13 @@ import { MoviesModule } from './movies/movies.module';
 import { MovieGuardGuard } from './movies/movie-guard.guard';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ObservablesComponent } from './observables/observables.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    ObservablesComponent
   ],
   imports: [
     BrowserModule,

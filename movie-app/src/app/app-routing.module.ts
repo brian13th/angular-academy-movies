@@ -4,6 +4,7 @@ import { MovieFeatureComponent } from './movies/movie-feature/movie-feature.comp
 import { MovieGuardGuard } from './movies/movie-guard.guard';
 import { MovieUrlComponent } from './movies/movie-url/movie-url.component';
 import { MoviesListComponent } from './movies/movies-list/movies-list.component';
+import { ObservablesComponent } from './observables/observables.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   // {path: '', redirectTo: 'featured', pathMatch: 'full'},
   // {path: "**", component: Custom404Component},
   {path:'murl', component: MovieUrlComponent, pathMatch:'prefix', canActivate:[MovieGuardGuard]},
-  {path:'reactive', component: ReactiveFormComponent}
+  {path:'reactive', component: ReactiveFormComponent},
+  {path:'event-publisher', component:ObservablesComponent}
 ];
 
 @NgModule({
