@@ -1,5 +1,10 @@
 <div [formGroup]="inputForm" class="form-group">
   <label>Publish Events</label>
-  <input formControlName='event' class="form-control" type="text" placeholder="write something">
-  <small class="text">{{ event }}</small>
+  <input id="input" formControlName='event' class="form-control" type="text" placeholder="write something">
+  <small class="text" *ngIf="flag">
+    Do you mean;
+    <ul class="list-group" *ngFor="let suggestion of suggestions">
+      <li class="list-group-item py-2 px-4" (click)="chooseMovie($event)">{{ suggestion }}</li>
+    </ul>
+  </small>
 </div>

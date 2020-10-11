@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Observable, fromEvent, Subscription, of } from 'rxjs';
+import { Observable, fromEvent, Subscription, from } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DbService } from '../services/db.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-observables',
@@ -8,29 +10,57 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./observables.component.css'],
 })
 export class ObservablesComponent implements OnInit, AfterViewInit {
-  escapeListener$: Observable<any> = fromEvent(document, 'keydown');
-  words$ = of('array', 'string', 'number', 'boolean')
+  input: any;
+  suggestions: any[] = [];
+  flag: boolean = false;
+  escapeListener$: Observable<any>;
+  movies$: Observable<any>;
   subcription: Subscription;
+  letters: Array<any> = [];
 
   inputForm = new FormGroup({
     event: new FormControl('')
   })
 
-  constructor() {}
+  constructor(private db: DbService) {}
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void {
-    this.escapeListener$.subscribe((v) => {
+  ngAfterViewInit(): void {                                       // creating 2 observables
+    this.input = document.querySelector('#input');                // one emitts keybord events
+    this.escapeListener$ = fromEvent(this.input, 'keydown');      // second emitts movies
+    this.movies$ = from(this.db.getAllMovies());                  // the second waits for the first one to emit at least 3 letters
+    this.escapeListener$.subscribe((v) => {                       // and the emitts via pipe / filter only relevant movie
+      // console.log(v)
+      this.letters.push(v.key)
       if(v.key == "Escape"){
-        this.inputForm.get('event').setValue('')
+       this.resetInput();
       };
+      if (this.letters.length === 3){
+        this.movies$.pipe(
+          filter((v)=>
+            v.title.toLowerCase().includes(this.letters.join(''))
+          )
+        ).subscribe(v => {
+          this.suggestions.push(v.title);
+          this.flag = true;
+        })
+        // ).subscribe(v => this.inputForm.get('event').setValue(v.title))
+      }
     });
-
-
   }
 
   get event(){
     return this.inputForm.get('event').value
+  }
+  resetInput(){
+    this.inputForm.get('event').setValue('');
+    this.letters = [];
+    this.suggestions = [];
+    this.flag = false;
+  }
+  chooseMovie($event){
+    this.resetInput()
+    this.inputForm.get('event').setValue($event.target.textContent)
   }
 }
