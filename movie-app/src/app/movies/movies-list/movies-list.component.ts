@@ -14,7 +14,8 @@ export class MoviesListComponent implements OnInit {
   constructor(private db:DbService) {}
 
   ngOnInit(): void {
-    this.movies = this.db.getAllMovies(this.criteria)
+    // this.movies = this.db.getAllMovies(this.criteria)
+    this.db.getMovies$().subscribe(movies => this.movies = movies)
   }
 
 }
