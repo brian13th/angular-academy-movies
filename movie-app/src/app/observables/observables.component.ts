@@ -32,10 +32,10 @@ export class ObservablesComponent implements OnInit, AfterViewInit {
     this.movies$ = from(this.db.getAllMovies());                  // the second waits for the first one to emit at least 3 letters
     this.escapeListener$.subscribe((v) => {                       // and the emitts via pipe / filter only relevant movie
       // console.log(v)
-      this.letters.push(v.key)
-      if(v.key == "Escape"){
-       this.resetInput();
-      };
+      this.letters.push(v.key)                                    // A BETTER WAY TO LISTEN TO INPUT FIELD WOULD BE
+      if(v.key == "Escape"){                                      // inpuntForm.valueChanges from reactive forms
+       this.resetInput();                                         // this way we could have a thrid observable and i wouldn't
+      };                                                          // exploit fromEvent listener for every emittion.
       if (this.letters.length === 3){
         this.movies$.pipe(
           filter((v)=>
