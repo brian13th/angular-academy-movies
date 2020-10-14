@@ -7,6 +7,8 @@ import { MoviesModule } from './movies/movies.module';
 import { MovieGuardGuard } from './movies/movie-guard.guard';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CacheInterceptor } from './cache.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MoviesModule,
     ReactiveFormsModule
   ],
-  providers: [MovieGuardGuard],
+  providers: [
+    MovieGuardGuard,
+    {provide: HTTP_INTERCEPTORS,
+    useClass: CacheInterceptor,
+    multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
