@@ -1,5 +1,6 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Movie } from './movie';
+import { Actor } from './Actor';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -9,6 +10,13 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 3, title: 'Avengers', dateReleased: '26-04-2019' },
       { id: 4, title: 'Batman', dateReleased: '18-07-2008' },
     ];
-    return { movies };
+
+    const actors: Actor[] = [
+      { id: 1, name: 'Leonardo Di Caprio' },
+      { id: 2, name: 'Ian Mckellen'},
+      { id: 3, name: 'Chris Hemsworth' },
+      { id: 4, name: 'George Clooney' },
+    ];
+    return { movies, actors };
   }
 }

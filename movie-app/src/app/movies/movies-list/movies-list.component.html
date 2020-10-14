@@ -1,4 +1,7 @@
 <h3>List of Movies</h3>
 <ul>
-  <li *ngFor="let movie of movies">{{ movie.title }}</li>
+  <div *ngFor="let movie of movies" (click)="showActors($event)">
+    <li>{{movie.title}}</li>
+  </div>
 </ul>
+<div *ngIf="actor">Protagonist: {{actor.name}}</div>

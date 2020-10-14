@@ -3,6 +3,7 @@ import { movies } from '../movies/movie-data';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Movie } from '../movies/movie'
+import { Actor } from '../movies/actor'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class DbService {
   movieUrl: string = environment.config.api.url;
-
+  actorUrl: string = environment.config.api.url2;
   constructor(private http: HttpClient) { }
   // criteria orizw to property gia to filtrarisma pou thelw na kanw.
   getAllMovies(criteria?: any): any[] {
@@ -22,5 +23,8 @@ export class DbService {
 
   getMovies$(): Observable<Movie[]>{
     return this.http.get<Movie[]>(this.movieUrl)
+  }
+  getActors$(): Observable<Actor[]> {
+    return this.http.get<Actor[]>(this.actorUrl)
   }
 }

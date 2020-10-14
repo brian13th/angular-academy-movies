@@ -33,7 +33,7 @@
       <label>Role</label>
       <input formControlName="role" class="form-control" type="text">
       <div *ngIf="role.invalid && (role.dirty || role.touched)">
-        <small class="text text-danger" *ngIf="role.errors.required">Password is mandatory</small>
+        <small class="text text-danger" *ngIf="role.errors.required">Role is mandatory</small>
       </div>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.valid">Sing Up</button>
