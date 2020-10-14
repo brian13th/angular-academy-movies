@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Movie } from '../movies/movie'
 import { Actor } from '../movies/actor'
 import { Observable } from 'rxjs';
+import { User } from '../user';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class DbService {
   getActors$(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.actorUrl);
   }
-  postUser$(user){
-    return this.http.post(this.usersUrl, user);
+  postUser$(user: User): Observable<User>{
+    return this.http.post<User>(this.usersUrl, user);
   }
 }

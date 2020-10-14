@@ -10,7 +10,7 @@ import { DbService } from '../services/db.service';
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
-  users: any[];
+  users: any[] = [];
 
   passwordValidate(): ValidatorFn {
     return (control: AbstractControl): {[key:string]: any} | null => {
@@ -24,10 +24,10 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   signUpForm = new FormGroup({
-      username: new FormControl('', [Validators.required,Validators.minLength(4)]),
-      password: new FormControl('', [Validators.required, this.passwordValidate()]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      role: new FormControl('', Validators.required)
+      username: new FormControl(''), //, [Validators.required,Validators.minLength(4)]
+      password: new FormControl(''), //, [Validators.required, this.passwordValidate()]
+      email: new FormControl(''), //, [Validators.required, Validators.email]
+      role: new FormControl('') //Validators.required
   })
 
   latestRefresh(){
@@ -49,8 +49,15 @@ export class ReactiveFormComponent implements OnInit {
   constructor(private router: Router, private db: DbService) { }
 
   submitData(){
-    this.db.postUser$(this.signUpForm.value).subscribe(res => console.log(res))
-    this.router.navigate(['messages']);
+    this.db.postUser$(this.signUpForm.value).subscribe(
+      (res) => {
+        if(res){
+          this.router.navigate(['messages']);
+          this.users.push(res)
+        }
+      }
+      );
+
     console.log(this.users)
   }
 
