@@ -32,4 +32,7 @@ export class DbService {
   postUser$(user: User): Observable<User>{
     return this.http.post<User>(this.usersUrl, user);
   }
+  getActor$(id: number): Observable<Actor>{
+    return this.http.get<Actor>(this.actorUrl+ "/" + id);
+  }
 }
