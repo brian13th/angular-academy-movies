@@ -8,6 +8,7 @@ export const environment = {
     api: {
       url: `api/movies`,
       url2: `api/actors`,
+      url3: `api/users`,
     },
     omdbapi: {
       baseUrl: 'http://www.omdbapi.com/',

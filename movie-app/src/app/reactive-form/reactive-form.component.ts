@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
+  users: any[];
+
   passwordValidate(): ValidatorFn {
     return (control: AbstractControl): {[key:string]: any} | null => {
       let password: boolean = false
@@ -43,10 +46,12 @@ export class ReactiveFormComponent implements OnInit {
   get role() {
     return this.signUpForm.get('role');
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private db: DbService) { }
 
   submitData(){
+    this.db.postUser$(this.signUpForm.value).subscribe(res => console.log(res))
     this.router.navigate(['messages']);
+    console.log(this.users)
   }
 
   ngOnInit(): void {

@@ -17,6 +17,10 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 3, name: 'Chris Hemsworth' },
       { id: 4, name: 'George Clooney' },
     ];
-    return { movies, actors };
+
+    const users: any[] = [
+      {username: '', password: '', email: '', role: ''}
+    ];
+    return { movies, actors, users };
   }
 }
