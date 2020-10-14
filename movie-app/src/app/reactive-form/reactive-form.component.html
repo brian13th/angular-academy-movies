@@ -36,6 +36,6 @@
         <small class="text text-danger" *ngIf="role.errors.required">Role is mandatory</small>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.valid">Sing Up</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.valid" (click)="submitData()">Sing Up</button>
   </form>
 </div>

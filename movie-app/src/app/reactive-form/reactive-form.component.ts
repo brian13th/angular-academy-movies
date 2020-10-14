@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reactive-form',
@@ -42,7 +43,11 @@ export class ReactiveFormComponent implements OnInit {
   get role() {
     return this.signUpForm.get('role');
   }
-  constructor() { }
+  constructor(private router: Router) { }
+
+  submitData(){
+    this.router.navigate(['messages']);
+  }
 
   ngOnInit(): void {
 

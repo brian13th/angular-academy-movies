@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { MessagesComponent } from './messages/messages.component';
 import { MovieFeatureComponent } from './movies/movie-feature/movie-feature.component';
 import { MovieGuardGuard } from './movies/movie-guard.guard';
 import { MovieUrlComponent } from './movies/movie-url/movie-url.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   // {path: '', redirectTo: 'featured', pathMatch: 'full'},
   // {path: "**", component: Custom404Component},
   {path:'murl', component: MovieUrlComponent, pathMatch:'prefix', canActivate:[MovieGuardGuard]},
-  {path:'reactive', component: ReactiveFormComponent}
+  {path:'reactive', component: ReactiveFormComponent},
+  {path:'messages', component: MessagesComponent},
 ];
 
 @NgModule({
