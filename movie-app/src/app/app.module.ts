@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CacheInterceptor } from './cache.interceptor';
 import { MessagesComponent } from './messages/messages.component';
+import { ErrorInterceptor } from './error.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,10 @@ import { MessagesComponent } from './messages/messages.component';
     MovieGuardGuard,
     {provide: HTTP_INTERCEPTORS,
     useClass: CacheInterceptor,
-    multi: true}
+    multi: true},
+    {provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true}
   ],
   bootstrap: [AppComponent]
 })

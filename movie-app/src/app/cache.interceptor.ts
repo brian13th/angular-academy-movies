@@ -4,27 +4,34 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpHeaders
+  HttpHeaders,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { retry, tap } from 'rxjs/operators';
+import { DbService } from './services/db.service';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private actorCache: DbService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // const headers = new HttpHeaders({'Authorization': 'thanasis'});
-    // request = request.clone({
-    //   setHeaders: {
-    //     Authorization: 'Thanasis'
-    //   }
-    // });
-    console.log('Entered intercept method of CacheInterceptor class')
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    console.log('hello from intercaptor')
+    const cachedResponse = this.actorCache.getActorService(req);
+    return cachedResponse ? of(cachedResponse) : this.sendRequest(req, next, this.actorCache);
+  }
 
-    return next.handle(request).pipe(
-      retry(5)
+  sendRequest(
+    req: HttpRequest<any>,
+    next: HttpHandler,
+    actorCache: DbService): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(
+      tap(event => {
+        if (event instanceof HttpResponse) {
+          this.actorCache.put(req, event);
+        }
+      })
     );
   }
 }
