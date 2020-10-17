@@ -14,7 +14,7 @@ const maxAge = 30000;
   providedIn: 'root'
 })
 export class DbService {
-  movieUrl: string = environment.config.api.url + 'aa';
+  movieUrl: string = environment.config.api.url;
   actorUrl: string = environment.config.api.url2;
   usersUrl: string = environment.config.api.url3;
   actorCache = new Map();
